@@ -129,7 +129,6 @@
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
     <PackageId>morelinq</PackageId>
     <PackageTags>linq;extensions</PackageTags>
-    <PackageProjectUrl>https://morelinq.github.io/</PackageProjectUrl>
     <PackageLicenseFile>COPYING.txt</PackageLicenseFile>
     <PackageOutputPath>..\dist</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
