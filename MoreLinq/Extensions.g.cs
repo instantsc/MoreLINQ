@@ -428,25 +428,6 @@ namespace MoreLinq.Extensions
 
     }
 
-    /// <summary><c>Append</c> extension.</summary>
-
-    [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class AppendExtension
-    {
-        /// <summary>
-        /// Returns a sequence consisting of the head elements and the given tail element.
-        /// </summary>
-        /// <typeparam name="T">Type of sequence</typeparam>
-        /// <param name="head">All elements of the head. Must not be null.</param>
-        /// <param name="tail">Tail element of the new sequence.</param>
-        /// <returns>A sequence consisting of the head elements and the given tail element.</returns>
-        /// <remarks>This operator uses deferred execution and streams its results.</remarks>
-
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> head, T tail)
-            => MoreEnumerable.Append(head, tail);
-
-    }
-
     /// <summary><c>Assert</c> extension.</summary>
 
     [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
@@ -1230,55 +1211,6 @@ namespace MoreLinq.Extensions
 
     }
 
-    /// <summary><c>DistinctBy</c> extension.</summary>
-
-    [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class DistinctByExtension
-    {
-        /// <summary>
-        /// Returns all distinct elements of the given source, where "distinctness"
-        /// is determined via a projection and the default equality comparer for the projected type.
-        /// </summary>
-        /// <remarks>
-        /// This operator uses deferred execution and streams the results, although
-        /// a set of already-seen keys is retained. If a key is seen multiple times,
-        /// only the first element with that key is returned.
-        /// </remarks>
-        /// <typeparam name="TSource">Type of the source sequence</typeparam>
-        /// <typeparam name="TKey">Type of the projected element</typeparam>
-        /// <param name="source">Source sequence</param>
-        /// <param name="keySelector">Projection for determining "distinctness"</param>
-        /// <returns>A sequence consisting of distinct elements from the source sequence,
-        /// comparing them by the specified key projection.</returns>
-
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
-            Func<TSource, TKey> keySelector)
-            => MoreEnumerable.DistinctBy(source, keySelector);
-
-        /// <summary>
-        /// Returns all distinct elements of the given source, where "distinctness"
-        /// is determined via a projection and the specified comparer for the projected type.
-        /// </summary>
-        /// <remarks>
-        /// This operator uses deferred execution and streams the results, although
-        /// a set of already-seen keys is retained. If a key is seen multiple times,
-        /// only the first element with that key is returned.
-        /// </remarks>
-        /// <typeparam name="TSource">Type of the source sequence</typeparam>
-        /// <typeparam name="TKey">Type of the projected element</typeparam>
-        /// <param name="source">Source sequence</param>
-        /// <param name="keySelector">Projection for determining "distinctness"</param>
-        /// <param name="comparer">The equality comparer to use to determine whether or not keys are equal.
-        /// If null, the default equality comparer for <c>TSource</c> is used.</param>
-        /// <returns>A sequence consisting of distinct elements from the source sequence,
-        /// comparing them by the specified key projection.</returns>
-
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
-            Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
-            => MoreEnumerable.DistinctBy(source, keySelector, comparer);
-
-    }
-
     /// <summary><c>EndsWith</c> extension.</summary>
 
     [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
@@ -1509,64 +1441,6 @@ namespace MoreLinq.Extensions
 
         public static bool Exactly<T>(this IEnumerable<T> source, int count)
             => MoreEnumerable.Exactly(source, count);
-
-    }
-
-    /// <summary><c>ExceptBy</c> extension.</summary>
-
-    [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class ExceptByExtension
-    {
-        /// <summary>
-        /// Returns the set of elements in the first sequence which aren't
-        /// in the second sequence, according to a given key selector.
-        /// </summary>
-        /// <remarks>
-        /// This is a set operation; if multiple elements in <paramref name="first"/> have
-        /// equal keys, only the first such element is returned.
-        /// This operator uses deferred execution and streams the results, although
-        /// a set of keys from <paramref name="second"/> is immediately selected and retained.
-        /// </remarks>
-        /// <typeparam name="TSource">The type of the elements in the input sequences.</typeparam>
-        /// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
-        /// <param name="first">The sequence of potentially included elements.</param>
-        /// <param name="second">The sequence of elements whose keys may prevent elements in
-        /// <paramref name="first"/> from being returned.</param>
-        /// <param name="keySelector">The mapping from source element to key.</param>
-        /// <returns>A sequence of elements from <paramref name="first"/> whose key was not also a key for
-        /// any element in <paramref name="second"/>.</returns>
-
-        public static IEnumerable<TSource> ExceptBy<TSource, TKey>(this IEnumerable<TSource> first,
-            IEnumerable<TSource> second,
-            Func<TSource, TKey> keySelector)
-            => MoreEnumerable.ExceptBy(first, second, keySelector);
-
-        /// <summary>
-        /// Returns the set of elements in the first sequence which aren't
-        /// in the second sequence, according to a given key selector.
-        /// </summary>
-        /// <remarks>
-        /// This is a set operation; if multiple elements in <paramref name="first"/> have
-        /// equal keys, only the first such element is returned.
-        /// This operator uses deferred execution and streams the results, although
-        /// a set of keys from <paramref name="second"/> is immediately selected and retained.
-        /// </remarks>
-        /// <typeparam name="TSource">The type of the elements in the input sequences.</typeparam>
-        /// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
-        /// <param name="first">The sequence of potentially included elements.</param>
-        /// <param name="second">The sequence of elements whose keys may prevent elements in
-        /// <paramref name="first"/> from being returned.</param>
-        /// <param name="keySelector">The mapping from source element to key.</param>
-        /// <param name="keyComparer">The equality comparer to use to determine whether or not keys are equal.
-        /// If null, the default equality comparer for <c>TSource</c> is used.</param>
-        /// <returns>A sequence of elements from <paramref name="first"/> whose key was not also a key for
-        /// any element in <paramref name="second"/>.</returns>
-
-        public static IEnumerable<TSource> ExceptBy<TSource, TKey>(this IEnumerable<TSource> first,
-            IEnumerable<TSource> second,
-            Func<TSource, TKey> keySelector,
-            IEqualityComparer<TKey>? keyComparer)
-            => MoreEnumerable.ExceptBy(first, second, keySelector, keyComparer);
 
     }
 
@@ -3306,10 +3180,10 @@ namespace MoreLinq.Extensions
 
     }
 
-    /// <summary><c>MaxBy</c> extension.</summary>
+    /// <summary><c>MaxElementsBy</c> extension.</summary>
 
     [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class MaxByExtension
+    public static partial class MaxElementsByExtension
     {
 
         /// <summary>
@@ -3328,9 +3202,9 @@ namespace MoreLinq.Extensions
         /// <returns>The sequence of maximal elements, according to the projection.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="selector"/> is null</exception>
 
-        public static IExtremaEnumerable<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source,
+        public static IExtremaEnumerable<TSource> MaxElementsBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector)
-            => MoreEnumerable.MaxBy(source, selector);
+            => MoreEnumerable.MaxElementsBy(source, selector);
 
         /// <summary>
         /// Returns the maximal elements of the given sequence, based on
@@ -3349,16 +3223,16 @@ namespace MoreLinq.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="selector"/>
         /// or <paramref name="comparer"/> is null</exception>
 
-        public static IExtremaEnumerable<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source,
+        public static IExtremaEnumerable<TSource> MaxElementsBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector, IComparer<TKey>? comparer)
-            => MoreEnumerable.MaxBy(source, selector, comparer);
+            => MoreEnumerable.MaxElementsBy(source, selector, comparer);
 
     }
 
-    /// <summary><c>MinBy</c> extension.</summary>
+    /// <summary><c>MinElementsBy</c> extension.</summary>
 
     [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class MinByExtension
+    public static partial class MinElementsByExtension
     {
         /// <summary>
         /// Returns the minimal elements of the given sequence, based on
@@ -3376,9 +3250,9 @@ namespace MoreLinq.Extensions
         /// <returns>The sequence of minimal elements, according to the projection.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="selector"/> is null</exception>
 
-        public static IExtremaEnumerable<TSource> MinBy<TSource, TKey>(this IEnumerable<TSource> source,
+        public static IExtremaEnumerable<TSource> MinElementsBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector)
-            => MoreEnumerable.MinBy(source, selector);
+            => MoreEnumerable.MinElementsBy(source, selector);
 
         /// <summary>
         /// Returns the minimal elements of the given sequence, based on
@@ -3397,9 +3271,9 @@ namespace MoreLinq.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="selector"/>
         /// or <paramref name="comparer"/> is null</exception>
 
-        public static IExtremaEnumerable<TSource> MinBy<TSource, TKey>(this IEnumerable<TSource> source,
+        public static IExtremaEnumerable<TSource> MinElementsBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector, IComparer<TKey>? comparer)
-            => MoreEnumerable.MinBy(source, selector, comparer);
+            => MoreEnumerable.MinElementsBy(source, selector, comparer);
 
     }
 
@@ -3937,7 +3811,7 @@ namespace MoreLinq.Extensions
     {
         /// <summary>
         /// Combines <see cref="Enumerable.OrderBy{TSource,TKey}(IEnumerable{TSource},Func{TSource,TKey})"/>,
-        /// where each element is its key, and <see cref="Enumerable.Take{TSource}"/>
+        /// where each element is its key, and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/>
         /// in a single operation.
         /// </summary>
         /// <typeparam name="T">Type of elements in the sequence.</typeparam>
@@ -3954,7 +3828,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="MoreEnumerable.OrderBy{T, TKey}(IEnumerable{T}, Func{T, TKey}, IComparer{TKey}, OrderByDirection)"/>,
-        /// where each element is its key, and <see cref="Enumerable.Take{TSource}"/>
+        /// where each element is its key, and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/>
         /// in a single operation.
         /// An additional parameter specifies the direction of the sort
         /// </summary>
@@ -3974,7 +3848,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="Enumerable.OrderBy{TSource,TKey}(IEnumerable{TSource},Func{TSource,TKey},IComparer{TKey})"/>,
-        /// where each element is its key, and <see cref="Enumerable.Take{TSource}"/>
+        /// where each element is its key, and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/>
         /// in a single operation. An additional parameter specifies how the
         /// elements compare to each other.
         /// </summary>
@@ -3994,7 +3868,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="MoreEnumerable.OrderBy{T, TKey}(IEnumerable{T}, Func{T, TKey}, IComparer{TKey}, OrderByDirection)"/>,
-        /// where each element is its key, and <see cref="Enumerable.Take{TSource}"/>
+        /// where each element is its key, and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/>
         /// in a single operation.
         /// Additional parameters specify how the elements compare to each other and
         /// the direction of the sort.
@@ -4024,7 +3898,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="Enumerable.OrderBy{TSource,TKey}(IEnumerable{TSource},Func{TSource,TKey},IComparer{TKey})"/>,
-        /// and <see cref="Enumerable.Take{TSource}"/> in a single operation.
+        /// and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/> in a single operation.
         /// </summary>
         /// <typeparam name="TSource">Type of elements in the sequence.</typeparam>
         /// <typeparam name="TKey">Type of keys.</typeparam>
@@ -4044,7 +3918,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="MoreEnumerable.OrderBy{T, TKey}(IEnumerable{T}, Func{T, TKey}, OrderByDirection)"/>,
-        /// and <see cref="Enumerable.Take{TSource}"/> in a single operation.
+        /// and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/> in a single operation.
         /// An additional parameter specifies the direction of the sort
         /// </summary>
         /// <typeparam name="TSource">Type of elements in the sequence.</typeparam>
@@ -4066,7 +3940,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="Enumerable.OrderBy{TSource,TKey}(IEnumerable{TSource},Func{TSource,TKey},IComparer{TKey})"/>,
-        /// and <see cref="Enumerable.Take{TSource}"/> in a single operation.
+        /// and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/> in a single operation.
         /// An additional parameter specifies how the keys compare to each other.
         /// </summary>
         /// <typeparam name="TSource">Type of elements in the sequence.</typeparam>
@@ -4089,7 +3963,7 @@ namespace MoreLinq.Extensions
 
         /// <summary>
         /// Combines <see cref="MoreEnumerable.OrderBy{T, TKey}(IEnumerable{T}, Func{T, TKey}, OrderByDirection)"/>,
-        /// and <see cref="Enumerable.Take{TSource}"/> in a single operation.
+        /// and <see cref="Enumerable.Take{TSource}(IEnumerable{TSource},int)"/> in a single operation.
         /// Additional parameters specify how the elements compare to each other and
         /// the direction of the sort.
         /// </summary>
@@ -4423,35 +4297,6 @@ namespace MoreLinq.Extensions
 
     }
 
-    /// <summary><c>Prepend</c> extension.</summary>
-
-    [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
-    public static partial class PrependExtension
-    {
-        /// <summary>
-        /// Prepends a single value to a sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
-        /// <param name="source">The sequence to prepend to.</param>
-        /// <param name="value">The value to prepend.</param>
-        /// <returns>
-        /// Returns a sequence where a value is prepended to it.
-        /// </returns>
-        /// <remarks>
-        /// This operator uses deferred execution and streams its results.
-        /// </remarks>
-        /// <code><![CDATA[
-        /// int[] numbers = { 1, 2, 3 };
-        /// var result = numbers.Prepend(0);
-        /// ]]></code>
-        /// The <c>result</c> variable, when iterated over, will yield
-        /// 0, 1, 2 and 3, in turn.
-
-        public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource value)
-            => MoreEnumerable.Prepend(source, value);
-
-    }
-
     /// <summary><c>PreScan</c> extension.</summary>
 
     [GeneratedCode("MoreLinq.ExtensionsGenerator", "1.0.0.0")]
@@ -4547,6 +4392,7 @@ namespace MoreLinq.Extensions
         /// <returns>A sequence of position integers representing the ranks of the corresponding items in the sequence</returns>
 
         public static IEnumerable<int> Rank<TSource>(this IEnumerable<TSource> source)
+            where TSource : notnull
             => MoreEnumerable.Rank(source);
 
         /// <summary>
@@ -4558,6 +4404,7 @@ namespace MoreLinq.Extensions
         /// <returns>A sequence of position integers representing the ranks of the corresponding items in the sequence</returns>
 
         public static IEnumerable<int> Rank<TSource>(this IEnumerable<TSource> source, IComparer<TSource> comparer)
+            where TSource : notnull
             => MoreEnumerable.Rank(source, comparer);
 
     }
@@ -4578,6 +4425,7 @@ namespace MoreLinq.Extensions
         /// <returns>A sequence of position integers representing the ranks of the corresponding items in the sequence</returns>
 
         public static IEnumerable<int> RankBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+            where TSource : notnull
             => MoreEnumerable.RankBy(source, keySelector);
 
         /// <summary>
@@ -4591,6 +4439,7 @@ namespace MoreLinq.Extensions
         /// <returns>A sequence of position integers representing the ranks of the corresponding items in the sequence</returns>
 
         public static IEnumerable<int> RankBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+            where TSource : notnull
             => MoreEnumerable.RankBy(source, keySelector, comparer);
 
     }
@@ -6338,7 +6187,8 @@ namespace MoreLinq.Extensions
         /// mapped to their keys.
         /// </returns>
 
-        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<(TKey Key, TValue Value)> source)             => MoreEnumerable.ToDictionary(source);
+        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<(TKey Key, TValue Value)> source)
+            where TKey : notnull             => MoreEnumerable.ToDictionary(source);
         /// <summary>
         /// Creates a <see cref="Dictionary{TKey,TValue}" /> from a sequence of
         /// <see cref="KeyValuePair{TKey,TValue}" /> elements.
@@ -6351,7 +6201,8 @@ namespace MoreLinq.Extensions
         /// mapped to their keys.
         /// </returns>
 
-        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)             => MoreEnumerable.ToDictionary(source);
+        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
+            where TKey : notnull             => MoreEnumerable.ToDictionary(source);
 
         /// <summary>
         /// Creates a <see cref="Dictionary{TKey,TValue}" /> from a sequence of
@@ -6369,6 +6220,7 @@ namespace MoreLinq.Extensions
 
         public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<(TKey Key, TValue Value)> source,
             IEqualityComparer<TKey>? comparer)
+            where TKey : notnull
             => MoreEnumerable.ToDictionary(source, comparer);
 
         /// <summary>
@@ -6387,6 +6239,7 @@ namespace MoreLinq.Extensions
 
         public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
             IEqualityComparer<TKey>? comparer)
+            where TKey : notnull
             => MoreEnumerable.ToDictionary(source, comparer);
 
     }

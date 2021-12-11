@@ -15,6 +15,8 @@
 // limitations under the License.
 #endregion
 
+using System.Linq;
+
 namespace MoreLinq.Test
 {
     using System;

@@ -27,9 +27,9 @@ namespace MoreLinq.Collections
     /// </summary>
 
     // Add members if and when needed to keep coverage.
-
     sealed class Dictionary<TKey, TValue>
     {
+#nullable disable
         readonly System.Collections.Generic.Dictionary<TKey, TValue> _dict;
         (bool, TValue) _null;
 
@@ -38,8 +38,9 @@ namespace MoreLinq.Collections
             _dict = new System.Collections.Generic.Dictionary<TKey, TValue>(comparer);
             _null = default;
         }
+#nullable restore
 
-        public TValue this[TKey key]
+        public TValue this[TKey? key]
         {
             set
             {
@@ -50,7 +51,7 @@ namespace MoreLinq.Collections
             }
         }
 
-        public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
+        public bool TryGetValue(TKey? key, [MaybeNullWhen(false)] out TValue value)
         {
             if (key is null)
             {

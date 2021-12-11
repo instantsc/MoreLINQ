@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <AssemblyTitle>MoreLinq.Test</AssemblyTitle>
-    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1;net451</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <AssemblyName>MoreLinq.Test</AssemblyName>
-    <OutputType>Exe</OutputType>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <IsPackable>false</IsPackable>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -41,11 +40,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp2.1' And '$(TargetFramework)' != 'net451'">
-    <PackageReference Include="System.Linq.Async" Version="5.0.0" />
-    <Compile Include="Async\*.cs" />
-  </ItemGroup>
-
   <ItemGroup>
       <Compile Include="*Test.cs" />
       <Compile Include="Test*.cs" />
@@ -74,16 +68,6 @@
       <Compile Include="Scope.cs" />
       <Compile Include="SequenceReader.cs" />
       <Compile Include="WatchableEnumerator.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
-    <Reference Include="System" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
   <ItemGroup>

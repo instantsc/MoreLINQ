@@ -64,7 +64,7 @@ namespace MoreLinq
 
             return TraceImpl(source,
                 string.IsNullOrEmpty(format)
-                ? (Func<TSource, string>) (x => x == null ? string.Empty : x.ToString())
+                ? (x => x == null ? string.Empty : x.ToString())
                 : (x => string.Format(format, x)));
         }
 
@@ -90,7 +90,7 @@ namespace MoreLinq
             return TraceImpl(source, formatter);
         }
 
-        static IEnumerable<TSource> TraceImpl<TSource>(IEnumerable<TSource> source, Func<TSource, string> formatter)
+        static IEnumerable<TSource> TraceImpl<TSource>(IEnumerable<TSource> source, Func<TSource, string?> formatter)
         {
             return source
 #if !NO_TRACING
